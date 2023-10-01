@@ -20,13 +20,17 @@ Certainly! Here is the README in pure Markdown format.
 
 ## Introduction
 
-This Java project serves as a robust example of how to interact with a RESTful API to transcribe audio files. It employs key Java libraries such as Spring's `RestTemplate` and Google's `Gson` for seamless API interaction and JSON handling.
+Welcome to the `RestApiTutorial` project, your all-in-one Java toolkit for audio transcription via RESTful APIs! This isn't just a bunch of code; it's a blueprint that guides you through the intricacies of seamlessly incorporating cloud-based transcription services into your applications. Perfect for both seasoned developers and newcomers eager to explore APIs and audio processing!
 
-## Dependencies
+This robust repository employs pivotal Java libraries such as Spring's `RestTemplate` and Google's `Gson` for smooth API interactions and JSON manipulation. But wait, there's more! We offer _two_ distinct methods for interacting with APIs: one using Spring Framework's `RestTemplate` and the other using Java's native `HttpClient`. So, you get to pick what suits you or your project best!
 
+The project is centered around the `Transcript` class, a POJO (Plain Old Java Object) designed to handle the transcript details like audio URLs, IDs, status, and the transcription text. It is employed by both API interaction methods, ensuring a uniform way of handling the transcriptions.
+
+### Dependencies
 - Java 1.8 or higher
 - Spring Framework
 - Google's Gson library
+- Java's HttpClient (part of the Java Standard Library from Java 11 onwards)
 
 ### Maven Dependencies
 
