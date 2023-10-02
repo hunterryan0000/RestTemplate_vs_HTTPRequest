@@ -22,37 +22,67 @@ public class API_Methods {
         System.out.println("Transcription ID: " + requestBody.getId());
         pollTranscriptStatus(restTemplate, requestBody.getId());
     }
-
+    /**
+     * Initializes a RestTemplate object to handle HTTP requests.
+     * @return RestTemplate object
+     */
     private static RestTemplate initializeRestTemplate() {
         return new RestTemplate();
     }
-
+    /**
+     * Initializes HttpHeaders with Authorization and Content-Type.
+     * @return HttpHeaders object
+     */
     private static HttpHeaders initializeHeaders() {
+        // Specify the credentials that the server needs to validate before granting access to its resources.
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", Confidential.KEY());
         headers.setContentType(MediaType.APPLICATION_JSON);
         return headers;
     }
-
+    /**
+     * Initializes the request body for the transcript API.
+     * @return Transcript object with set properties
+     */
     private static Transcript initializeRequestBody() {
         Transcript requestBody = new Transcript();
         requestBody.setAudio_url("https://www2.cs.uic.edu/~i101/SoundFiles/preamble.wav");
         return requestBody;
     }
-
+    /**
+     * Converts a Transcript object to JSON string.
+     * @param requestBody Transcript object
+     * @param gson Gson object for serialization
+     * @return JSON string
+     */
     private static String toJson(Transcript requestBody, Gson gson) {
         return gson.toJson(requestBody);
     }
-
+    /**
+     * Sends a POST request to the API to create a new transcript.
+     * @param jsonRequest JSON string as request body
+     * @param headers HttpHeaders object
+     * @param restTemplate RestTemplate object
+     * @return ResponseEntity object containing API response
+     */
     private static ResponseEntity<String> postTranscript(String jsonRequest, HttpHeaders headers, RestTemplate restTemplate) {
         HttpEntity<String> requestEntity = new HttpEntity<>(jsonRequest, headers);
         return restTemplate.postForEntity(API_BASE_URL, requestEntity, String.class);
     }
-
+    /**
+     * Converts a JSON string to a Transcript object.
+     * @param responseBody JSON string received from API
+     * @param gson Gson object for deserialization
+     * @return Transcript object
+     */
     private static Transcript fromJson(String responseBody, Gson gson) {
         return gson.fromJson(responseBody, Transcript.class);
     }
-
+    /**
+     * Polls the transcript status until it is completed or errors out.
+     * @param restTemplate RestTemplate object
+     * @param id Transcript ID
+     */
     private static void pollTranscriptStatus(RestTemplate restTemplate, String id) {
         HttpHeaders getHeaders = new HttpHeaders();
         getHeaders.set("Authorization", Confidential.KEY());
