@@ -67,7 +67,10 @@ public class API_Methods {
      */
     private static ResponseEntity<String> postTranscript(String jsonRequest, HttpHeaders headers, RestTemplate restTemplate) {
         HttpEntity<String> requestEntity = new HttpEntity<>(jsonRequest, headers);
+        //used to encapsulate the request information you send to the server.
         return restTemplate.postForEntity(API_BASE_URL, requestEntity, String.class);
+        //encapsulates the response received from the server.
+        //ResponseEntity extends HttpEntity, so it is an HttpEntity with additional features like status codes.
     }
     /**
      * Converts a JSON string to a Transcript object.
