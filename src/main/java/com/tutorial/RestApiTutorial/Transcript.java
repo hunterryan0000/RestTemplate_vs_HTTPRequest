@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Transcript {
     @JsonProperty
     private String audio_url;
-    @JsonProperty
+    @JsonProperty //maps json property to Java field
     private String id;
     @JsonProperty
     private String status;
